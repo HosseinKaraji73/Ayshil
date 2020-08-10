@@ -1,0 +1,12 @@
+.sidebar-menu li a .sidebar-menu li .label, .sidebar-menu li .badge {
+    margin-top: -15px !important
+}
+
+.fa-angle-left {
+    /*margin-top: -15px !important*/
+}
+
+
+select {
+    height: 38px !important
+}
