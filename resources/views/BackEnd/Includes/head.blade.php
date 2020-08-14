@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="{{asset('BackEnd/css/fonts-fa.css')}}">
 <link rel="stylesheet" href="{{asset('BackEnd/css/bootstrap-rtl.min.css')}}">
 <link rel="stylesheet" href="{{asset('BackEnd/css/rtl.css')}}">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="csrf-token" content="{{ csrf_token() }}">Z
 
 <link rel="stylesheet" href="{{asset('BackEnd/css/batavajoh-be-ghalebe-site-ezafe-shode.css')}}" type="text/css" media="all">
 

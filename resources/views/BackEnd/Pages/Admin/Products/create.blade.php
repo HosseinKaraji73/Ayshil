@@ -1,6 +1,6 @@
 @extends('BackEnd.Layouts.admin')
 @section('head-content')
-    <span class="fa fa-plus-circle">&nbsp;</span> ایجاد محصول  
+    <span class="fa fa-plus-circle">&nbsp;</span> ایجاد محصول
     <br>
     <p style="font-size: 15px;color: red;margin-top: 15px">     Photo Size: 265px * 265px</p>
 @endsection
@@ -121,7 +121,7 @@
             </div>
 
 
-    
+
 
 
         </div>
@@ -160,6 +160,16 @@
             @if ($errors->has('description'))
                 <span class="help-block">
                     <strong>{{ $errors->first('description') }}</strong>
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group{{ $errors->has('sizing_guide') ? ' has-error' : '' }}">
+            {!! Form::label('sizing_guide', ' راهنمای سایز بندی :') !!}
+            {!! Form::textarea('sizing_guide', null,['class'=>'form-control','id'=>'ckeditor2']) !!}
+            @if ($errors->has('sizing_guide'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('sizing_guide') }}</strong>
                 </span>
             @endif
         </div>
@@ -302,5 +312,6 @@
     </script>
     <script>
         CKEDITOR.replace('ckeditor1', options);
+        CKEDITOR.replace('ckeditor2', options);
     </script>
 @endsection

@@ -32,7 +32,7 @@
                                 <th>--</th>
                                 {{--<th>تصویر</th>--}}
                                 <th>نام منو فارسی</th>
-                                <th>نام منو انگلیسی</th>
+{{--                                <th>نام منو انگلیسی</th>--}}
                                 <th>منوی والد</th>
 {{--                                <th>موقعیت</th>--}}
                                 <th> + - </th>
@@ -48,7 +48,7 @@
                                             {{--<img src={{asset("$item->photo")}} style="height:50px;"/>--}}
                                         {{--</td>--}}
                                         <td>{{$item->name}}</td>
-                                        <td>{{$item->name_en}}</td>
+{{--                                        <td>{{$item->name_en}}</td>--}}
                                         <td>{{$item->menuProductsNameFA}}</td>
 {{--                                        <td>--}}
 {{--                                            @if($item->position == 0)--}}

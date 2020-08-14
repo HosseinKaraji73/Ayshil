@@ -126,7 +126,7 @@ class ProductController extends Controller
         // }
 
         $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        $code = "Ayshil-";
+        $code = "Aysh-";
         for ($i = 0; $i < 7; $i++) {
             $code .= $chars[mt_rand(0, strlen($chars) - 1)];
         }
@@ -162,6 +162,7 @@ class ProductController extends Controller
         $product->brand = $request->brand;
         $product->sub_menu_product = $request->menu_id;
         $product->discount = $request->discount;
+        $product->sizing_guide = $request->sizing_guide;
         $product->photo1 = isset($inputs['photo1']) ? $inputs['photo1'] : null;
         $product->photo2 = isset($inputs['photo2']) ? $inputs['photo2'] : null;
         $product->photo3 = isset($inputs['photo3']) ? $inputs['photo3'] : null;
@@ -213,7 +214,7 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'category' => 'required',
             'brand' => 'required',
-        
+
         ], [
             'title.required' => 'نام محصول را وارد کنید.',
             'title.max' => 'تعداد کاراکترهای وارد شده بیش از حد مجاز می باشد.',
@@ -310,6 +311,7 @@ class ProductController extends Controller
         $product->brand = $request->brand;
         $product->sub_menu_product = $request->menu_id;
         $product->discount = $request->discount;
+        $product->sizing_guide = $request->sizing_guide;
 
         if ($product->save()) {
             return redirect()->back()->with('alert-success', 'محصول با موفقیت ویرایش شد.');
@@ -446,7 +448,7 @@ class ProductController extends Controller
     public function randomCodeGenerator()
     {
         $chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-        $code = "Ayshil-";
+        $code = "ibolak-";
         for ($i = 0; $i < 7; $i++) {
             $code .= $chars[mt_rand(0, strlen($chars) - 1)];
         }

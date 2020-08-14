@@ -53,12 +53,12 @@ class SubMenuProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'=>'required|max: 255|string|unique:sub_menu_products',
-            'name_en'=>'required|max: 255|string|unique:sub_menu_products',
+//            'name_en'=>'required|max: 255|string|unique:sub_menu_products',
         ], [
             'name.required'=>'پر کردن فیلد نام اجباری است',
-            'name_en.required'=>'پر کردن فیلد نام اجباری است',
+//            'name_en.required'=>'پر کردن فیلد نام اجباری است',
             'name.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
-            'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
+//            'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
         ]);
 
 
@@ -70,7 +70,7 @@ class SubMenuProductController extends Controller
 
         $SubMenuProduct = [
             'name' => $request->name,
-            'name_en' => $request->name_en,
+//            'name_en' => $request->name_en,
             'menuProducts_id' => $request->menuProducts_id,
         ];
         if (SubMenuProduct::create($SubMenuProduct)) {
@@ -115,12 +115,12 @@ class SubMenuProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'=>'required|max: 255|string|unique:sub_menu_products',
-            'name_en'=>'required|max: 255|string|unique:sub_menu_products',
+//            'name_en'=>'required|max: 255|string|unique:sub_menu_products',
         ], [
             'name.required'=>'پر کردن فیلد نام اجباری است',
-            'name_en.required'=>'پر کردن فیلد نام اجباری است',
+//            'name_en.required'=>'پر کردن فیلد نام اجباری است',
             'name.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
-            'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
+//            'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
         ]);
 
         if ($validator->fails()) {
@@ -129,7 +129,7 @@ class SubMenuProductController extends Controller
                 ->withInput();
         }
         $SubMenuProduct->name = $request->name;
-        $SubMenuProduct->name_en = $request->name_en;
+//        $SubMenuProduct->name_en = $request->name_en;
         if ($SubMenuProduct->save()) {
             return redirect()->back()->with('alert-success', 'منو با موفقیت ثبت شد.');
         }

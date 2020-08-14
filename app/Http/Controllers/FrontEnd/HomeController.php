@@ -56,8 +56,8 @@ class HomeController extends Controller
             $productsSpecial = Product::whereAvailable('1')->whereCategory(3)->orderBy('created_at' , 'desc')->get();
             $productsTopSelling = Product::whereAvailable('1')->whereCategory(2)->orderBy('created_at' , 'desc')->get();
 
-            $productsNew2 = Product::whereAvailable('1')->whereCategory(1)->orderBy('created_at' , 'desc')->limit(6)->get();
-            $productsSpecial2 = Product::whereAvailable('1')->whereCategory(3)->orderBy('created_at' , 'desc')->limit(6)->get();
+            $productsNew2 = Product::whereAvailable('1')->whereCategory(1)->orderBy('created_at' , 'desc')->limit(12)->get();
+            $productsSpecial2 = Product::whereAvailable('1')->whereCategory(3)->orderBy('created_at' , 'desc')->limit(12)->get();
             $productsTopSelling2 = Product::whereAvailable('1')->whereCategory(2)->orderBy('created_at' , 'desc')->limit(6)->get();
 
 
@@ -67,7 +67,7 @@ class HomeController extends Controller
 
             $ojaghs = Product::whereAvailable('1')->where('title' , 'like' , '%'.'اجاق'.'%')->orderBy('created_at' , 'desc')->orderBy('updated_at' , 'desc')->paginate(12);
 
-            $events = Event::orderBy('created_at' , 'desc')->get();
+            $events = Event::orderBy('created_at' , 'desc')->limit('8')->get();
 
             $customers = Customer::orderBy('created_at' , 'desc')->get();
             $products = Product::where('discount' , '!=' , null)->limit(1)->inRandomOrder()->get();

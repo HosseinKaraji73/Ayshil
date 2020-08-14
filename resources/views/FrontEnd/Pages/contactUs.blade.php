@@ -1,497 +1,305 @@
 @extends('FrontEnd.Layouts.master')
 
-
-@if(App::getLocale() == 'fa')
-    @section('title','تماس با ما')
-@elseif(App::getLocale() == 'en')
-    @section('title','Contact Us')
-@endif
+@section('title','صفحه اصلی')
 
 @section('meta')
-
+    <meta name="description" content="فروشگاه آی بولک"/>
+    <meta name="keywords" content="فروشگاه آی بولک"/>
 @endsection
 
-@section('style')
+
+@section('classBody')
+    static-page contact-page
 @endsection
 
-@section('headScript')
-    <script type="text/javascript">
-        var baseDir = "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/";
 
-        var customized_map = null;
-
-        var defaultLat = "20.7711247";
-
-        var defaultLong = "73.7287618";
-
-        var ggApiKey = "AIzaSyDkA-XBOOnDXlvjbNXzmSxk7xUybAzqQPo";
-
-        var id_lang = 1;
-
-        var prestashop = {
-            "cart": {
-                "products": [],
-                "totals": {
-                    "total": {
-                        "type": "total",
-                        "label": "Total",
-                        "amount": 0,
-                        "value": "$0.00"
-                    },
-                    "total_including_tax": {
-                        "type": "total",
-                        "label": "Total (tax incl.)",
-                        "amount": 0,
-                        "value": "$0.00"
-                    },
-                    "total_excluding_tax": {
-                        "type": "total",
-                        "label": "Total (tax excl.)",
-                        "amount": 0,
-                        "value": "$0.00"
-                    }
-                },
-                "subtotals": {
-                    "products": {
-                        "type": "products",
-                        "label": "Subtotal",
-                        "amount": 0,
-                        "value": "$0.00"
-                    },
-                    "discounts": null,
-                    "shipping": {
-                        "type": "shipping",
-                        "label": "Shipping",
-                        "amount": 0,
-                        "value": "Free"
-                    },
-                    "tax": {
-                        "type": "tax",
-                        "label": "Taxes",
-                        "amount": 0,
-                        "value": "$0.00"
-                    }
-                },
-                "products_count": 0,
-                "summary_string": "0 items",
-                "vouchers": {
-                    "allowed": 0,
-                    "added": []
-                },
-                "discounts": [],
-                "minimalPurchase": 0,
-                "minimalPurchaseRequired": ""
-            },
-            "currency": {
-                "name": "US Dollar",
-                "iso_code": "USD",
-                "iso_code_num": "840",
-                "sign": "$"
-            },
-            "customer": {
-                "lastname": null,
-                "firstname": null,
-                "email": null,
-                "birthday": null,
-                "newsletter": null,
-                "newsletter_date_add": null,
-                "optin": null,
-                "website": null,
-                "company": null,
-                "siret": null,
-                "ape": null,
-                "is_logged": false,
-                "gender": {
-                    "type": null,
-                    "name": null
-                },
-                "addresses": []
-            },
-            "language": {
-                "name": "English (English)",
-                "iso_code": "en",
-                "locale": "en-US",
-                "language_code": "en-us",
-                "is_rtl": "0",
-                "date_format_lite": "m\/d\/Y",
-                "date_format_full": "m\/d\/Y H:i:s",
-                "id": 1
-            },
-            "page": {
-                "title": "",
-                "canonical": null,
-                "meta": {
-                    "title": "Contact us",
-                    "description": "Use our form to contact us",
-                    "keywords": "",
-                    "robots": "index"
-                },
-                "page_name": "contact",
-                "body_classes": {
-                    "lang-en": true,
-                    "lang-rtl": false,
-                    "country-US": true,
-                    "currency-USD": true,
-                    "layout-left-column": true,
-                    "page-contact": true,
-                    "tax-display-disabled": true
-                },
-                "admin_notifications": []
-            },
-            "shop": {
-                "name": "Demo Store",
-                "logo": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/demo-store-logo-1555915547.jpg",
-                "stores_icon": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/logo_stores.png",
-                "favicon": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/favicon.ico"
-            },
-            "urls": {
-                "base_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/",
-                "current_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/contact-us",
-                "shop_domain_url": "https:\/\/innovatorythemes.com",
-                "img_ps_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/",
-                "img_cat_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/c\/",
-                "img_lang_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/l\/",
-                "img_prod_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/",
-                "img_manu_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/m\/",
-                "img_sup_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/su\/",
-                "img_ship_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/s\/",
-                "img_store_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/st\/",
-                "img_col_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/co\/",
-                "img_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/img\/",
-                "css_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/css\/",
-                "js_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/js\/",
-                "pic_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/upload\/",
-                "pages": {
-                    "address": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/address",
-                    "addresses": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/addresses",
-                    "authentication": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/login",
-                    "cart": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/cart",
-                    "category": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=category",
-                    "cms": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=cms",
-                    "contact": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/contact-us",
-                    "discount": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/discount",
-                    "guest_tracking": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/guest-tracking",
-                    "history": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order-history",
-                    "identity": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/identity",
-                    "index": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/",
-                    "my_account": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/my-account",
-                    "order_confirmation": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order-confirmation",
-                    "order_detail": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=order-detail",
-                    "order_follow": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order-follow",
-                    "order": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order",
-                    "order_return": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=order-return",
-                    "order_slip": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/credit-slip",
-                    "pagenotfound": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/page-not-found",
-                    "password": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/password-recovery",
-                    "pdf_invoice": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=pdf-invoice",
-                    "pdf_order_return": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=pdf-order-return",
-                    "pdf_order_slip": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=pdf-order-slip",
-                    "prices_drop": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/prices-drop",
-                    "product": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=product",
-                    "search": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/search",
-                    "sitemap": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/sitemap",
-                    "stores": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/stores",
-                    "supplier": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/supplier",
-                    "register": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/login?create_account=1",
-                    "order_login": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order?login=1"
-                },
-                "alternative_langs": {
-                    "en-us": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/contact-us",
-                    "de-de": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/de\/kontakt",
-                    "fr-fr": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/fr\/nous-contacter",
-                    "es-es": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/es\/contactenos",
-                    "it-it": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/it\/contattaci"
-                },
-                "theme_assets": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/",
-                "actions": {
-                    "logout": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/?mylogout="
-                },
-                "no_picture_image": {
-                    "bySize": {
-                        "small_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-small_default.jpg",
-                            "width": 98,
-                            "height": 111
-                        },
-                        "cart_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-cart_default.jpg",
-                            "width": 125,
-                            "height": 141
-                        },
-                        "medium_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-medium_default.jpg",
-                            "width": 350,
-                            "height": 396
-                        },
-                        "home_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-home_default.jpg",
-                            "width": 350,
-                            "height": 396
-                        },
-                        "large_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-large_default.jpg",
-                            "width": 800,
-                            "height": 905
-                        }
-                    },
-                    "small": {
-                        "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-small_default.jpg",
-                        "width": 98,
-                        "height": 111
-                    },
-                    "medium": {
-                        "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-medium_default.jpg",
-                        "width": 350,
-                        "height": 396
-                    },
-                    "large": {
-                        "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-large_default.jpg",
-                        "width": 800,
-                        "height": 905
-                    },
-                    "legend": ""
-                }
-            },
-            "configuration": {
-                "display_taxes_label": false,
-                "is_catalog": false,
-                "show_prices": true,
-                "opt_in": {
-                    "partner": true
-                },
-                "quantity_discount": {
-                    "type": "discount",
-                    "label": "Discount"
-                },
-                "voucher_enabled": 0,
-                "return_enabled": 0
-            },
-            "field_required": [],
-            "breadcrumb": {
-                "links": [{
-                    "title": "Home",
-                    "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/"
-                }, {
-                    "title": "Contact us",
-                    "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/contact-us"
-                }],
-                "count": 2
-            },
-            "link": {
-                "protocol_link": "https:\/\/",
-                "protocol_content": "https:\/\/"
-            },
-            "time": 1570653230,
-            "static_token": "b37219994338861bc35224966f2f6efd",
-            "token": "3d579dc08fa30b63da91ad8e3f21049d"
-        };
-
-        var search_url = "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/search";
-
-        var storeGGmapCall = "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/modules\/storeggmap\/storeggmapCall.php";
-
-        var urlIcon = null;
-    </script>
-@endsection
-
-@section('fooScript')
-    @if(App::getLocale() == 'fa')
-        <script type="text/javascript" src="{{asset('FrontEnd/js/RTL/bottom-317da995.js')}}"></script>
-    @elseif(App::getLocale() == 'en')
-        <script type="text/javascript" src="{{asset('FrontEnd/js/LTR/bottom-317da995.js')}}"></script>
-    @endif
-@endsection
-
-@section('content')
-    <section id="wrapper" style="margin-top: 28px;">
-
-        <aside id="notifications">
-            <div class="container">
-
+@section('topBar')
+    <div id="topbar">
+        <div class="container d-flex align-items-center justify-content-between  mobile-justify-content-center ">
+            <div id="logo-wrapper"><a href="{{url('/')}}"><img
+                        src="{{asset('FrontEnd/images/1.png')}}"
+                        alt="ibolak"/></a>
+                <h2>لذت یک خرید شیک</h2>
             </div>
-        </aside>
-
-        <div class="container">
-            <div class="row">
-
-                <div id="left-column">
-                    <div class="contact-rich">
-                        <!-- <h4>Store information</h4> -->
-                        <div class="block">
-                            <div class="block-inner">
-                                <div class="icon"><i class="ti-mobile"></i></div>
-                                <div class="data">
-                                    <h4 class="block-title">{{__('settings.contactPhone')}}</h4>
-                                    <a href="tel:+ 0123456789">
-                                        @if(App::getLocale() == 'fa')
-                                            {{$contacts->title1}}
-                                        @elseif(App::getLocale() == 'en')
-                                            {{$contacts->title1_en}}
-                                        @endif
-                                    </a>
+            <div class="mobile-header-left mobile-only"></div>
+            <div class="topbar-menu-wrapper" id="menu-wrapper">
+                <ul>
+                    <li><a href="{{url('/')}}" title="" target="_self">
+                            <div><span>حراجی</span></div>
+                        </a>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>زنانه</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
+                        </ul>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>مردانه</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>بچگانه</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>سایر</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            @include('FrontEnd.Includes.search')
+
+        </div>
+    </div>
+@endsection
+
+@section('header')
+    <header>
+        <div id="breadcrumbs">
+            <a href="../../../index.html" title="" target="_self">فروشگاه آيشیل</a> <span>اسلش</span>
+
+        </div>
+    </header>
+@endsection
+
+
+@section('main')
+    <main>
+
+        <h1 class="title-dot">تماس با ما </h1>
+        <div id="map-wrapper">
+            <div id="app" style="width: 100%; height: 100%; overflow: hidden; position: relative;">
+                <div class="mapp-container" data-locale="fa" style="display: block;">
+                    <div id="mapp-app" class="mapp-map leaflet-container leaflet-touch leaflet-retina leaflet-fade-anim leaflet-touch-zoom" style="position: relative;" tabindex="0" data-gesture-handling-touch-content="برای حرکت دادن نقشه از دو انگشت استفاده کنید." data-gesture-handling-scroll-content="برای بزرگ‌نمایی نقشه، از ⌘ + پیمایش استفاده کنید.">
+                        <div class="leaflet-pane leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
+                            <div class="leaflet-pane leaflet-tile-pane">
+                                <div class="leaflet-layer " style="z-index: 1; opacity: 1;">
+                                    <div class="leaflet-tile-container leaflet-zoom-animated" style="z-index: 18; transform: translate3d(0px, 0px, 0px) scale(1);">
+                                        <img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(390px, -82px, 0px); opacity: 1;" src="blob:https://ibolak.com/aa7b17ae-50b4-7e4c-b05e-e7eba85095e2"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(646px, -82px, 0px); opacity: 1;" src="blob:https://ibolak.com/38610b35-20c3-8241-a2a7-2a8261dba9cb"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(390px, 174px, 0px); opacity: 1;" src="blob:https://ibolak.com/960e1f98-951d-f443-a0dc-e3dac248dd7f"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(646px, 174px, 0px); opacity: 1;" src="blob:https://ibolak.com/2a870a11-a9f2-104f-9ace-5bb925c6d782"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(134px, -82px, 0px); opacity: 1;" src="blob:https://ibolak.com/f751a82a-78ed-8143-8a9b-9b02db941cd0"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(902px, -82px, 0px); opacity: 1;" src="blob:https://ibolak.com/19de76d0-3181-bc49-bff4-5e968cafb50a"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(134px, 174px, 0px); opacity: 1;" src="blob:https://ibolak.com/6e290dfd-3e75-4c44-952e-b24bcb984439"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(902px, 174px, 0px); opacity: 1;" src="blob:https://ibolak.com/916f1303-d39a-bb4c-9d1e-c300be2a66fd"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-122px, -82px, 0px); opacity: 1;" src="blob:https://ibolak.com/c50cf828-e118-414f-932b-1b6b99b7dbe9"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1158px, -82px, 0px); opacity: 1;" src="blob:https://ibolak.com/bb9d52bc-e15b-3947-9088-9babca64664f"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(-122px, 174px, 0px); opacity: 1;" src="blob:https://ibolak.com/056e8950-e13e-5849-bfa7-b587dd86ad3b"><img class="leaflet-tile leaflet-tile-loaded" style="width: 256px; height: 256px; transform: translate3d(1158px, 174px, 0px); opacity: 1;" src="blob:https://ibolak.com/31ba35f4-d8b7-a74a-b9a5-fdae8ed55e77">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="leaflet-pane leaflet-shadow-pane"></div>
+                            <div class="leaflet-pane leaflet-overlay-pane"></div>
+                            <div class="leaflet-pane leaflet-marker-pane">
+                                <img src="https://cdn.map.ir/web-sdk/1.4.2/assets/images/marker-default-blue.svg" class="leaflet-marker-icon leaflet-zoom-animated leaflet-interactive" style="margin-left: -20px; margin-top: -40px; width: 40px; height: 40px; transform: translate3d(635px, 150px, 0px); z-index: 150;" tabindex="0">
+                            </div>
+                            <div class="leaflet-pane leaflet-tooltip-pane"></div>
+                            <div class="leaflet-pane leaflet-popup-pane"></div>
+                            <div class="leaflet-proxy leaflet-zoom-animated" style="transform: translate3d(21851900px, 13080600px, 0px) scale(65536);"></div>
                         </div>
-
-                        <div class="block">
-                            <div class="block-inner">
-                                <div class="icon"><i class="ti-location-pin"></i></div>
-                                <div class="data">
-                                    <h4 class="block-title">{{__('settings.contactAddress1')}}</h4>
-{{--                                   اراک--}}
-{{--                                    <br />خیابان قائم مقام٫ آیت الله غفاری--}}
-{{--                                    <br />چهار راه سعیدی--}}
-                                    @if(App::getLocale() == 'fa')
-                                        {{$contacts->title2}}
-                                    @elseif(App::getLocale() == 'en')
-                                        {{$contacts->title2_en}}
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        <div class="block">
-                            <div class="block-inner">
-                                <div class="icon"><i class="ti-location-pin"></i></div>
-                                <div class="data">
-                                    <h4 class="block-title">{{__('settings.contactAddress2')}}</h4>
-{{--                                    اراک--}}
-{{--                                    <br />خیابان قائم مقام٫ آیت الله غفاری--}}
-{{--                                    <br />چهار راه سعیدی--}}
-                                    @if(App::getLocale() == 'fa')
-                                        {{$contacts->title3}}
-                                    @elseif(App::getLocale() == 'en')
-                                        {{$contacts->title3_en}}
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="block">
-                            <div class="block-inner">
-                                <div class="icon"><i class="ti-email"></i></div>
-                                <div class="data email">
-                                    <h4 class="block-title">{{__('settings.contactMail')}}</h4>
-                                    <a href="mailto:innovatorythemes@gmail.com">
-                                        @if(App::getLocale() == 'fa')
-                                            {{$contacts->title4}}
-                                        @elseif(App::getLocale() == 'en')
-                                            {{$contacts->title4}}
-                                        @endif
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="leaflet-control-container">
+                            <div class="leaflet-top leaflet-left"></div>
+                            <div class="leaflet-top leaflet-right"></div>
+                            <div class="leaflet-bottom leaflet-left"></div>
+                            <div class="leaflet-bottom leaflet-right"></div>
                         </div>
                     </div>
-
+                    <div class="mapp-anchor top position-direct direct item-set horizontal"></div>
+                    <div class="mapp-anchor top position-middle direct item-set horizontal"></div>
+                    <div class="mapp-anchor top position-reverse reverse item-set horizontal"></div>
+                    <div class="mapp-anchor center position-direct"></div>
+                    <div class="mapp-anchor center position-middle"></div>
+                    <div class="mapp-anchor center position-reverse"></div>
+                    <div class="mapp-anchor bottom position-direct direct item-set horizontal"></div>
+                    <div class="mapp-anchor bottom position-middle reverse item-set vertical">
+                        <a class="mapp-logo" href="http://corp.map.ir"></a></div>
+                    <div class="mapp-anchor bottom position-reverse reverse item-set horizontal"></div>
+                    <div class="mapp-footer">
+                        <div class="item-set vertical centered triggers right"></div>
+                        <div class="item-set vertical centered triggers left">
+                            <div class="icon-background is-lighter is-rounded is-boxed margined-small">
+                                <a data-i18n="[title]mapp-tooltip-zoom-in" href="#" class="icon is-small icon-zoom-in desktop tooltip-right tooltipstered"></a>
+                            </div>
+                            <div class="icon-background is-lighter is-rounded is-boxed margined-large">
+                                <a data-i18n="[title]mapp-tooltip-zoom-out" href="#" class="icon is-small icon-zoom-out desktop tooltip-right tooltipstered"></a>
+                            </div>
+                        </div>
+                        <div class="contents"></div>
+                    </div>
+                    <div class="mapp-overlay is-invisible"></div>
                 </div>
-
-{{--                <div id="content-wrapper" class="left-column col-xs-12 col-md-12">--}}
-{{--                    <div class="innovatoryBreadcrumb">--}}
-
-{{--                        <nav data-depth="2" class="breadcrumb">--}}
-{{--                            <ol itemscope itemtype="http://schema.org/BreadcrumbList">--}}
-
-{{--                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">--}}
-{{--                                    <a itemprop="item" href="index.html">--}}
-{{--                                        <span itemprop="name">خان</span>--}}
-{{--                                    </a>--}}
-{{--                                    <meta itemprop="position" content="1">--}}
-{{--                                </li>--}}
-
-{{--                                <li itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">--}}
-{{--                                    <a itemprop="item" href="contact-us.html">--}}
-{{--                                        <span itemprop="name">Contact us</span>--}}
-{{--                                    </a>--}}
-{{--                                    <meta itemprop="position" content="2">--}}
-{{--                                </li>--}}
-
-{{--                            </ol>--}}
-{{--                        </nav>--}}
+                <div class="mapp-loader is-invisible"></div>
+            </div>
+        </div>
+        <div class="row border-bottom-1">
+            <div class="col-lg-6 col-sm-12">
+                <ul>
+                    <li>
+                        <i class="fal fa-phone text-primary"></i><a href="tel:01732534106-9"><span>شماره تماس:<b dir="ltr">01732534106-9</b></span></a>
+                    </li>
+                    <li>
+                        <i class="fal fa-mailbox text-primary"></i><span>آدرس ایمیل:<b dir="ltr">info@ibolak.com</b></span>
+                    </li>
+                    <li>
+                        <i class="fal fa-map-pin text-primary"></i><span>آدرس دفتر مرکزی:<b dir="ltr">گرگان، خیابان ولیعصر، عدالت ۳۹، مجتمع تجاری رویال</b></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <ul>
+                    <li><i class="fal fa-fax text-primary"></i><span>شماره فاکس:<b dir="ltr">021 123871623</b></span>
+                    </li>
+                    <li>
+                        <i class="fal fa-phone text-primary"></i><span>شماره پشتیبانی ۲۴ ساعته:<b dir="ltr">021 123123</b></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+{{--        <h3 class="title-dot mt-5 font-weight-bold text-large">ارسال پیام</h3>--}}
+{{--        <form class="mt-5 w-50" action="https://ibolak.com/contact" method="POST">--}}
+{{--            <input type="hidden" name="_token" value="ARI9bgTnyWc8TttTsYs4jpPwLKqpNcrqs09U9LHS">--}}
+{{--            <label>نام و نام خانوادگی</label>--}}
+{{--            <input type="text" name="name" value="" placeholder="نام و نام خانوادگی خود را وارد نمایید...">--}}
+{{--            <label>آدرس ایمیل</label>--}}
+{{--            <input type="email" name="email" value="" placeholder="آدرس ایمیل خود را وارد نمایید...">--}}
+{{--            <label>تلفن همراه</label>--}}
+{{--            <input type="number" name="cellphone" value="" placeholder="شماره خود را وارد کنید . . .">--}}
+{{--            <label>محتوای پیام</label>--}}
+{{--            <textarea name="text" placeholder="پیام خود را برای ما بنویسید و مطمئن باشید که آن‌را می‌خوانیم..."></textarea>--}}
+{{--            <div class="d-flex align-items-center justify-content-between">--}}
+{{--                <div class="g-recaptcha" style="display: inline-block" data-sitekey="6LcUEt4UAAAAAHILvzPAi04ovct7tWpIYL3UVHvn">--}}
+{{--                    <div style="width: 304px; height: 78px;">--}}
+{{--                        <div>--}}
+{{--                            <iframe src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LcUEt4UAAAAAHILvzPAi04ovct7tWpIYL3UVHvn&amp;co=aHR0cHM6Ly9pYm9sYWsuY29tOjQ0Mw..&amp;hl=fa&amp;v=IU7gZ7o6RDdDE6U4Y1YJJWnN&amp;size=normal&amp;cb=q7ovmpfalk93" role="presentation" name="a-y4ga64deoazp" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" width="304" height="78" frameborder="0"></iframe>--}}
+{{--                        </div>--}}
+{{--                        <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>--}}
 {{--                    </div>--}}
+{{--                    <iframe style="display: none;"></iframe>--}}
+{{--                </div>--}}
+{{--                <button class="btn btn-primary btn-large"><i class="fal fa-paper-plane"></i><span>ارسال پیام</span>--}}
+{{--                </button>--}}
+{{--            </div>--}}
 
-                    <div id="main">
+{{--        </form>--}}
 
-                        <section id="content" class="page-content card card-block">
-
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6478.4292005400885!2d51.4386567!3d35.7209404!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1586088491273!5m2!1sen!2s" width="100%" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                        </section>
-{{--                        <section id="content" class="page-content card card-block">--}}
-
-{{--                            <div class="sec-heading mb-30">--}}
-{{--                                <h3>{{__('settings.contactForm')}}</h3>--}}
-{{--                            </div>--}}
-{{--                            <section class="contact-form">--}}
-{{--                                <form action="contact-us.html" method="post" enctype="multipart/form-data">--}}
-
-{{--                                    <section class="form-fields row">--}}
-
-{{--                                        <div class="form-group col-sm-6">--}}
-{{--                                            <label class="form-control-label">{{__('settings.contactSubject')}}</label>--}}
-{{--                                            <select name="id_contact" class="form-control form-control-select">--}}
-{{--                                                <option value="2">{{__('settings.contactSelect')}}</option>--}}
-{{--                                                <option value="1">Webmaster</option>--}}
-{{--                                            </select>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="form-group col-sm-6">--}}
-{{--                                            <label class="form-control-label">{{__('settings.contactMail')}}</label>--}}
-{{--                                            <input class="form-control" name="from" type="name" value="" placeholder="your@email.com">--}}
-{{--                                        </div>--}}
-
-
-{{--                                        <div class="form-group col-sm-6 floatForm">--}}
-{{--                                            <label class="form-control-label">{{__('settings.contactFile')}}</label>--}}
-{{--                                            <input type="file" name="fileUpload" class="filestyle" data-buttonText="{{__('settings.contactChoose')}}">--}}
-{{--                                            --}}{{--                                            <span class="form-control-comment">optional</span>--}}
-{{--                                        </div>--}}
-{{--                                        <div class="form-group col-sm-6">--}}
-{{--                                            <label class="form-control-label">{{__('settings.contactNumber')}}</label>--}}
-{{--                                            <input class="form-control" name="from" type="email" value="" placeholder="09129283406">--}}
-{{--                                        </div>--}}
-
-
-{{--                                        <div class="form-group col-sm-12">--}}
-{{--                                            <label class="form-control-label">{{__('settings.contactMessage')}}</label>--}}
-{{--                                            <textarea class="form-control" name="message" placeholder="{{__('settings.contactMessageDescription')}}" rows="3"></textarea>--}}
-{{--                                        </div>--}}
-
-{{--                                        <div class="form-group">--}}
-{{--                                            <div class="offset-md-3">--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </section>--}}
-
-{{--                                    <footer class="form-footer text-center">--}}
-{{--                                        <style>--}}
-{{--                                            input[name=url] {--}}
-{{--                                                display: none !important;--}}
-{{--                                            }--}}
-{{--                                        </style>--}}
-{{--                                        <input type="text" name="url" value="" />--}}
-{{--                                        <input type="hidden" name="token" value="" />--}}
-{{--                                        <input class="btn btn-primary" type="submit" name="submitMessage" value="{{__('settings.contactSend')}}">--}}
-{{--                                    </footer>--}}
-
-{{--                                </form>--}}
-{{--                            </section>--}}
-
-{{--                            <section id="map-style">--}}
-{{--                                <div id="storemap"></div>--}}
-{{--                            </section>--}}
-
-{{--                        </section>--}}
-
-                        <footer class="page-footer">
-                            <!-- Footer content -->
-                        </footer>
-                    </div>
-
-                </div>
-
-            </div>
-{{--        </div>--}}
-
-    </section>
+    </main>
 @endsection
+

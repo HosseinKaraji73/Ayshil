@@ -9,7 +9,7 @@
 
 <body class="skin-blue sidebar-mini">
 <div class="wrapper" @yield('stylewrapper')>
-@include('BackEnd.Includes.header')
+{{--@include('BackEnd.Includes.header')--}}
 <!-- Left side column. contains the logo and sidebar -->
 @include('BackEnd.Includes.PanelAdmin')
 <!-- Content Wrapper. Contains page content -->

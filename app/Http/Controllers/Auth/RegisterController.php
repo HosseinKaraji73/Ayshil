@@ -53,20 +53,20 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            'name' => 'required',
+            'family' => 'required',
             'mobile' => 'required|unique:users|regex:/^[0,9]{2}[0-9]{9}$/',
-            'parentReagent' => 'max:14',
-//            'password' => 'required|min:6',
-//            'g-recaptcha-response' => 'required|captcha'
+            'email' => 'required|max:100|unique:users',
         ], [
+            'name.required' => 'نام خود را وارد کنید.',
+            'family.required' => 'نام خانوادگی خود را وارد کنید.',
             'mobile.required' => 'شماره تلفن همراه خود را وارد کنید.',
             'mobile.unique' => 'کاربری با این شماره تلفن در حال حاضر وجود دارد.',
             'mobile.regex' => 'شماره تلفن همراه وارد شده معتبر نمی باشد.',
-//            'reagent.string' => 'کد معرف اشتباه است',
-//            'password.required' => 'رمز عبور خود را وارد کنید.',
-//            'password.min' => 'رمز عبور حداقل باید 6 کاراکتر باشد.',
-//            'password.confirmed' => 'تکرار رمز عبور مطابقت ندارد.',
-//            'g-recaptcha-response.required' => 'تایید کنید که ربات نیستید',
-//            'g-recaptcha-response.captcha' => 'تایید کنید که ربات نیستید',
+            'email.required' => ' ایمیل خود را وارد نمایید',
+            'email.email' => 'فرمت ایمیل نامعتبر.',
+            'email.max' => 'فرمت ایمیل نامعتبر.',
+            'email.unique' => 'با این ایمیل قبلا ثبت نام کرده اید.',
         ]);
 
     }
@@ -93,8 +93,10 @@ class RegisterController extends Controller
             [
                 'roleId' => $roleId,
                 'reagent' => $reagentCode,
-                'parentReagent' => $data['parentReagent'],
+                'name' => $data['name'],
+                'family' => $data['family'],
                 'mobile' => $data['mobile'],
+                'email' => $data['email'],
                 'password' => bcrypt($password)
             ]);
 

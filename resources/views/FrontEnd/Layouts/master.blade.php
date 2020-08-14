@@ -1,34 +1,25 @@
-<!Doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<!DOCTYPE html>
+<html lang="fa-IR" dir="rtl">
 <head>
-    @if(App::getLocale() == 'fa')
-        <title>@yield('title') | آیشیل</title>
-    @elseif(App::getLocale() == 'en')
-        <title>@yield('title') | Ayshil</title>
-    @endif
+    <meta charset="UTF-8"/>
+    <title>@yield('title') | @yield('siteName', 'آیشیل')</title>
 
-    @include('FrontEnd.Includes.head')
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=no"/>
+    <meta name="csrf-token" content="{{@csrf_token()}}">
+
+   @include('FrontEnd.Includes.head')
+
 </head>
 
-<body itemscope itemtype="" id="index"
-      class=" lang-en country-us currency-usd layout-left-column page-index tax-display-disabled">
+<body class="@yield('classBody')">
+@yield('topBar')
+<div class="container">
+    @yield('header')
+    @yield('main')
+</div>
+@yield('productShowGallery')
 
-<!-- Preloader -->
-{{--<div class="preloader">--}}
-{{--    <img src="{{asset('FrontEnd/images/setting/preloader.gif')}}" class="preloader-img" alt="" width="auto"--}}
-{{--         height="auto"/>--}}
-{{--</div>--}}
-
-
-<main>
-    @include('FrontEnd.Includes.header')
-    @yield('content')
-    @include('FrontEnd.Includes.footer')
-</main>
-
-<!--scroll up-->
-<a href="javascript:void(0)" class="mypresta_scrollup hidden-phone open"><i class="ti-arrow-up"></i></a>
-
+@include('FrontEnd.Includes.footer')
 @include('FrontEnd.Includes.foo')
 </body>
 </html>

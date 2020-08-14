@@ -1,0 +1,20 @@
+.redfeedback{
+    color:red
+}
+
+.alert-danger2 {
+    color: #038811;
+    background-color: #b7f2a1;
+    border-color: #000;
+    text-align: center;
+    width: 38%;
+}
+
+.alert-danger1{
+    font-size: 13px;
+    color: #ffffff;
+    background-color: #f2171c;
+    border-color: #000;
+    text-align: center;
+    width: 38%;
+}

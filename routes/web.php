@@ -11,23 +11,11 @@
 |
 */
 
-use Spatie\Sitemap\SitemapGenerator;
 
 Route::get('/clear', function () {
     $cache1 = Artisan::call('cache:clear');
     $cache2 = Artisan::call('config:cache');
     return "<a href='/'>Click Me</a>";
-});
-
-Route::get('sitemap', function () {
-    SitemapGenerator::create('http://ayshil.com')->getSitemap()->writeToDisk('public', 'sitemap.xml');
-    return "<a href='/'>SiteMap Created</a>";
-});
-
-
-Route::get('Localization/{locale}', function ($locale) {
-    Session::put('locale', $locale);
-    return redirect()->back();
 });
 
 Route::get('/', 'FrontEnd\HomeController@index');
@@ -39,8 +27,11 @@ Route::get('events', 'FrontEnd\EventsController@index');
 Route::get('events-details/{id}', 'FrontEnd\EventsController@show');
 
 Route::get('products', 'FrontEnd\ProductController@index');
-Route::get('products/{id}/{title}-{title_en}', 'FrontEnd\ProductController@show');
-Route::get('products/menu/{id}/{menuProducts_id}/{name}-{name_en}', 'FrontEnd\ProductController@subMenuShow');
+Route::get('products/menu/{id}/{name}', 'FrontEnd\ProductController@MenuShow');
+Route::get('products/menu/{menuProducts_id}/{id}/{name}', 'FrontEnd\ProductController@subMenuShow');
+Route::get('products/menu/{subMenuProducts_id}/{id}/{name}', 'FrontEnd\ProductController@subSubMenuShow');
+Route::get('products/menu/{subMenuProducts_id}/{subSubMenuProducts_id}/{id}/{title}', 'FrontEnd\ProductController@show');
+
 
 Route::get('activate-carbon', 'FrontEnd\ActiveCarbonController@index');
 Route::get('activate-carbon/{id}/{title}-{title_en}', 'FrontEnd\ActiveCarbonController@show');
@@ -48,7 +39,7 @@ Route::get('activate-carbon/{id}/{title}-{title_en}', 'FrontEnd\ActiveCarbonCont
 Route::get('videos', 'FrontEnd\VideoController@index');
 
 Route::get('events', 'FrontEnd\EventController@index');
-Route::get('events/{id}/{title}-{title_en}', 'FrontEnd\EventController@show');
+Route::get('events/{id}/{title}', 'FrontEnd\EventController@show');
 
 Route::get('about-us', 'FrontEnd\AboutController@index');
 Route::get('call-us', 'FrontEnd\ContactController@index');
@@ -97,6 +88,7 @@ Route::group(['middleware' => 'auth'], function () {
             Route::resource('product', 'BackEnd\Admin\ProductController');
             Route::resource('menu-product', 'BackEnd\Admin\MenuProductController');
             Route::resource('sub-menu-product', 'BackEnd\Admin\SubMenuProductController');
+            Route::resource('sub-sub-menu-product', 'BackEnd\Admin\SubSubMenuProductController');
             Route::get('available/product/{product}', 'BackEnd\Admin\ProductController@toggleAvailable');
             Route::resource('order', 'BackEnd\Admin\OrderController');
             Route::resource('customers', 'BackEnd\Admin\CustomersController');
@@ -139,3 +131,7 @@ Route::group(['middleware' => 'auth'], function () {
         });
     });
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

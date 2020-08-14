@@ -1,6 +1,6 @@
 @extends('BackEnd.Layouts.admin')
 @section('head-content')
-    <span class="fa fa-plus-circle">&nbsp;</span>  ایجاد رنگ
+    <span class="fa fa-plus-circle">&nbsp;</span>  ایجاد منو
 @endsection
 @section('content')
     <div class="col-sm-8 col-sm-push-2">
@@ -31,7 +31,7 @@
             {{--</div>--}}
 
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                {!! Form::label('name', ' عنوان رنگ :') !!}
+                {!! Form::label('name', ' عنوان منو :') !!}
                 {!! Form::text('name', null,['id'=>'name' ,'class'=>'form-control']) !!}
                 @if ($errors->has('name'))
                     <span class="help-block">
@@ -40,15 +40,15 @@
                 @endif
             </div>
 
-            <div class="form-group{{ $errors->has('name_en') ? ' has-error' : '' }}">
-                {!! Form::label('name_en', ' عنوان منو انگلیسی:') !!}
-                {!! Form::text('name_en', null,['id'=>'name_en' ,'class'=>'form-control']) !!}
-                @if ($errors->has('name_en'))
-                    <span class="help-block">
-                            <strong>{{ $errors->first('name_en') }}</strong>
-                        </span>
-                @endif
-            </div>
+{{--            <div class="form-group{{ $errors->has('name_en') ? ' has-error' : '' }}">--}}
+{{--                {!! Form::label('name_en', ' عنوان منو انگلیسی:') !!}--}}
+{{--                {!! Form::text('name_en', null,['id'=>'name_en' ,'class'=>'form-control']) !!}--}}
+{{--                @if ($errors->has('name_en'))--}}
+{{--                    <span class="help-block">--}}
+{{--                            <strong>{{ $errors->first('name_en') }}</strong>--}}
+{{--                        </span>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
 {{--            <div class="form-group{{ $errors->has('position') ? ' has-error' : '' }}">--}}
 {{--                {!! Form::label('position', 'موقعیت در صفحه اصلی :') !!}--}}

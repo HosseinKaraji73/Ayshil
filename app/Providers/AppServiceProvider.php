@@ -7,6 +7,7 @@ use App\Footer;
 use App\MenuProduct;
 use App\Setting;
 use App\SubMenuProduct;
+use App\SubSubMenuProduct;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
@@ -36,14 +37,20 @@ class AppServiceProvider extends ServiceProvider
         $events = Event::orderBy('created_at' , 'desc')->limit(5)->get();
 
         $menuProducts = MenuProduct::orderByDesc('created_at')
-            ->limit(5)
+            ->limit(10)
             ->get();
         foreach($menuProducts as $menuProduct){
             $submenu[$menuProduct->id] = SubMenuProduct::where('menuProducts_id' , $menuProduct->id)
                 ->get();
+            foreach($submenu[$menuProduct->id] as $subMenuProduct){
+                $subsubmenu[$subMenuProduct->id] = SubSubMenuProduct::where('subMenuProducts_id' , $subMenuProduct->id)
+                    ->get();
+            }
         }
+
+
         $menuPic = Setting::find(1);
 
-        View::share([ 'footers' => $footers , 'enents' => $events , 'menuProducts' => $menuProducts , 'submenu' => $submenu ,'menuPic'=>$menuPic]);
+        View::share([ 'footers' => $footers , 'enents' => $events , 'menuProducts' => $menuProducts , 'submenu' => $submenu ,'subsubmenu'=>$subsubmenu,'menuPic'=>$menuPic]);
     }
 }

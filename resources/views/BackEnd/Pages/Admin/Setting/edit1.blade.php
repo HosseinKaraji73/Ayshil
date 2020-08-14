@@ -37,7 +37,7 @@
 
         <div class="row">
             <div class="col-sm-2 form-group img img-responsive">
-                صفحه اصلی عکس بزرگ
+                عکس زیر اسلایدر ۱
                 @if($settings->photo1)
                     <img src="{{asset("img/admin/setting/$settings->photo1")}}" style="width: 150px;">
                 @elseif(!isset($settings->photo1))
@@ -45,7 +45,7 @@
                 @endif
             </div>
             <div class="col-sm-2 form-group img img-responsive">
-                صفحه اصلی کوچک چپ
+                عکس زیر اسلایدر ۲
                 @if($settings->photo2)
                     <img src="{{asset("img/admin/setting/$settings->photo2")}}" style="width: 150px;">
                 @elseif(!isset($settings->photo2))
@@ -53,7 +53,7 @@
                 @endif
             </div>
             <div class="col-sm-2 form-group img img-responsive">
-                صفحه اصلی کوچک راست
+                عکس زیر اسلایدر ۳
                 @if($settings->photo3 )
                     <img src="{{asset("img/admin/setting/$settings->photo3 ")}}" style="width: 150px;">
                 @elseif(!isset($settings->photo3 ))
@@ -61,7 +61,7 @@
                 @endif
             </div>
             <div class="col-sm-2 form-group img img-responsive">
-                عکس بالای فروشگاه
+                عکس زیر اسلایدر ۴
                 @if($settings->photo4)
                     <img src="{{asset("img/admin/setting/$settings->photo4")}}" style="width: 150px;">
                 @elseif(!isset($settings->photo4))
@@ -70,7 +70,7 @@
             </div>
 
             <div class="col-sm-2 form-group img img-responsive">
-                عکس بالای انرژی پاک
+                عکس زیر چهار عکس بالای صفحه اصلی
                 @if($settings->photo5)
                     <img src="{{asset("img/admin/setting/$settings->photo5")}}" style="width: 150px;">
                 @elseif(!isset($settings->photo5))
@@ -144,7 +144,7 @@
                 @endif
             </div>
         </div>
-        
+
 
 
 <br>
@@ -269,7 +269,7 @@
     </div>
 
      <div class="row">
-    
+
              <div class="col-sm-3 form-group{{ $errors->has('bank_portal') ? ' has-error' : '' }}">
                 {!! Form::label('bank_portal','غیر فعال کردن درگاه های سایت') !!}
                 {!! Form::checkbox('bank_portal' ,'0' ,false) !!}
@@ -294,7 +294,7 @@
 
     <div class="clearfix"></div>
 
-    
+
 
 @endsection
 

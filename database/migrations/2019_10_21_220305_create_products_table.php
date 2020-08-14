@@ -42,6 +42,7 @@ class CreateProductsTable extends Migration
             $table->boolean('confirm')->comment('0:!confirm | 1:confirm')->nullable();
             $table->boolean('overplus')->comment('0:!overplus | 1:overplus')->nullable();
             $table->boolean('new')->comment('0:!new | 1:new')->nullable();
+            $table->longText('sizing_guide')->nullable();
             $table->string('photo1')->nullable();
             $table->string('photo2')->nullable();
             $table->string('photo3')->nullable();

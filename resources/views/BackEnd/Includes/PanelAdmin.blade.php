@@ -53,9 +53,14 @@
                 <ul class="treeview-menu">
                     <li><a href="{{route('menu-product.create')}}"><i class="fa fa-circle-o"></i>ایجاد منو</a></li>
                     <li><a href="{{route('menu-product.index')}}"><i class="fa fa-circle-o"></i>مشاهده/ویرایش/حذف</a></li>
+
                     <br>
-                    <li><a href="{{route('sub-menu-product.create')}}"><i class="fa fa-circle-o"></i>ایجاد  زیر منو</a></li>
+                    <li><a href="{{route('sub-menu-product.create')}}"><i class="fa fa-circle-o"></i>ایجاد  زیر منو1</a></li>
                     <li><a href="{{route('sub-menu-product.index')}}"><i class="fa fa-circle-o"></i>مشاهده/ویرایش/حذف</a></li>
+
+                    <br>
+                    <li><a href="{{route('sub-sub-menu-product.create')}}"><i class="fa fa-circle-o"></i>ایجاد  زیر منو2</a></li>
+                    <li><a href="{{route('sub-sub-menu-product.index')}}"><i class="fa fa-circle-o"></i>مشاهده/ویرایش/حذف</a></li>
                 </ul>
             </li>
 

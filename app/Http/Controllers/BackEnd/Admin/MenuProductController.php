@@ -41,12 +41,12 @@ class MenuProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'=>'required|max: 255|string|unique:menu_products',
-            'name_en'=>'required|max: 255|string|unique:menu_products',
+//            'name_en'=>'required|max: 255|string|unique:menu_products',
         ], [
             'name.required'=>'پر کردن فیلد نام اجباری است',
-            'name_en.required'=>'پر کردن فیلد نام اجباری است',
+//            'name_en.required'=>'پر کردن فیلد نام اجباری است',
             'name.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
-            'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
+//            'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
         ]);
 
 
@@ -58,7 +58,7 @@ class MenuProductController extends Controller
 
         $MenuProduct = [
             'name' => $request->name,
-            'name_en' => $request->name_en,
+//            'name_en' => $request->name_en,
         ];
         if (MenuProduct::create($MenuProduct)) {
             return redirect()->back()->with('alert-success', 'منو با موفقیت ثبت شد.');

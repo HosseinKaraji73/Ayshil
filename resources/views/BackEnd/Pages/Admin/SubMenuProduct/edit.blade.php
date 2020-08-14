@@ -48,15 +48,15 @@
             @endif
         </div>
 
-        <div class="form-group{{ $errors->has('name_en') ? ' has-error' : '' }}">
-            {!! Form::label('name_en', ' عنوان منو انگلیسی:') !!}
-            {!! Form::text('name_en', null,['id'=>'name_en' ,'class'=>'form-control']) !!}
-            @if ($errors->has('name_en'))
-                <span class="help-block">
-                            <strong>{{ $errors->first('name_en') }}</strong>
-                        </span>
-            @endif
-        </div>
+{{--        <div class="form-group{{ $errors->has('name_en') ? ' has-error' : '' }}">--}}
+{{--            {!! Form::label('name_en', ' عنوان منو انگلیسی:') !!}--}}
+{{--            {!! Form::text('name_en', null,['id'=>'name_en' ,'class'=>'form-control']) !!}--}}
+{{--            @if ($errors->has('name_en'))--}}
+{{--                <span class="help-block">--}}
+{{--                            <strong>{{ $errors->first('name_en') }}</strong>--}}
+{{--                        </span>--}}
+{{--            @endif--}}
+{{--        </div>--}}
 
         <div class="form-group{{ $errors->has('menuProducts_id') ? ' has-error' : '' }}">
             {!! Form::label('menuProducts_id', 'زیر مجموعه کدام منو اصلی باشد؟') !!}

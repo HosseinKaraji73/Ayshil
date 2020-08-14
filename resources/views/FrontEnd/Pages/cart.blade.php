@@ -1,496 +1,1448 @@
 @extends('FrontEnd.Layouts.master')
 
-
-@if(App::getLocale() == 'fa')
-    @section('title','سبد خرید شما')
-@elseif(App::getLocale() == 'en')
-    @section('title','Shopping Cart')
-@endif
+@section('title','صفحه اصلی')
 
 @section('meta')
-
+    <meta name="description" content="فروشگاه آی بولک"/>
+    <meta name="keywords" content="فروشگاه آی بولک"/>
 @endsection
 
-@section('style')
-<style>
-    .input-group{
-        width: 60%;
-    }
-    .form-control {
-        color: #222;
-        /*padding: .5rem 1rem;*/
-        padding: 0px 15px 0px 0px;
-    }
-</style>
+
+@section('classBody')
+    basket-page
 @endsection
 
-@section('headScript')
-    <script type="text/javascript">
-        var baseDir = "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/";
 
-        var prestashop = {
-            "cart": {
-                "products": [],
-                "totals": {
-                    "total": {
-                        "type": "total",
-                        "label": "Total",
-                        "amount": 0,
-                        "value": "$0.00"
-                    },
-                    "total_including_tax": {
-                        "type": "total",
-                        "label": "Total (tax incl.)",
-                        "amount": 0,
-                        "value": "$0.00"
-                    },
-                    "total_excluding_tax": {
-                        "type": "total",
-                        "label": "Total (tax excl.)",
-                        "amount": 0,
-                        "value": "$0.00"
-                    }
+@section('topBar')
+    <div id="topbar">
+        <div class="container d-flex align-items-center justify-content-between  mobile-justify-content-center ">
+            <div id="logo-wrapper"><a href="{{url('/')}}"><img
+                        src="{{asset('FrontEnd/images/1.png')}}"
+                        alt="ibolak"/></a>
+                <h2>لذت یک خرید شیک</h2>
+            </div>
+            <div class="mobile-header-left mobile-only"></div>
+            <div class="topbar-menu-wrapper" id="menu-wrapper">
+                <ul>
+                    <li><a href="{{url('/')}}" title="" target="_self">
+                            <div><span>حراجی</span></div>
+                        </a>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>زنانه</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>مردانه</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>بچگانه</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="has-megamenu">
+                        <a href="{{url('/')}}"><span>سایر</span><i class="far fa-angle-down"></i></a>
+                        <ul class="megamenu">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="subcategory"><a
+                                            href="{{url('/')}}"
+                                            title="" target="_self">
+                                            <h4>بلوز/شومیز</h4></a>
+                                        <ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="subcategory">
+                                        <a href="{{url('/')}}" title="" target="_self">
+                                            <h4>روپوش</h4></a>
+                                        <ul>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">پانچو/بارانی</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کاپشن</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">کت/کت کتان/کت جین</a></li>
+                                            <li>
+                                                <a href="{{url('/')}}"
+                                                   title="" target="_self">مانتو/ژاکت</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            @include('FrontEnd.Includes.search')
+
+        </div>
+    </div>
+@endsection
+
+@section('header')
+    <header>
+        <div id="breadcrumbs">
+            <a href="index.html" title="" target="_self">فروشگاه آيشیل</a> <span>سبد خرید</span>
+
+        </div>
+    </header>
+@endsection
+
+@section('main')
+    <main class="basket-empty">
+
+        <div class="d-flex align-items-center justify-content-center flex-column">
+            <i class="fal fa-shopping-cart page-icon"></i>
+            <h1>سبد خرید شما خالی است</h1>
+        </div>
+        <section class="products-container" id="related-products">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>محصولاتی که شاید بپسندید</h2>
+                </div>
+                <div class="section-arrows">
+                    <a class="arrow-next" href="#" title="" target="_self"><i class="far fa-arrow-right"></i></a><a class="arrow-prev" href="#" title="" target="_self"><i class="far fa-arrow-left"></i></a>
+                </div>
+            </div>
+            <div class="products-wrapper should-slide slick-initialized slick-slider">
+                <div class="slick-list draggable">
+                    <div class="slick-track" style="opacity: 1; width: 5334px; transform: translate3d(1270px, 0px, 0px);">
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-5" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/ex8qd/شومیز-جین-خال-خالی" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126917-77obKk3uMZTwxv1i.jpg" alt="شومیز جین خال خالی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شومیز جین خال خالی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">85,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bwype/دامن-کوتاه-نخی" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126879-rolNzo4N09rIsEJ2.jpg" alt="دامن کوتاه نخی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>دامن کوتاه نخی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/dv69b/تیشرت-مردانه-TOMTAILOR" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126645-9SwrM4vpOdsHI7jR.jpg" alt="تیشرت مردانه TOMTAILOR">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت مردانه TOMTAILOR</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price text-danger">ناموجود</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/erqyd/شلوارک-زیر-زانو-طرحدار" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597125665-n5qxHLXuWLdIHiUc.jpg" alt="شلوارک زیر زانو طرحدار">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوارک زیر زانو طرحدار</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price text-danger">ناموجود</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bq95d/شورتک-طرحدار-H-M" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597125662-84w53onNWHRZbg31.jpg" alt="شورتک طرحدار H&amp;M">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شورتک طرحدار H&amp;M</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/b1yxb/تیشرت-ساده-مردانه" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597136762-uvoip4AET3b0sGKc.jpg" alt="تیشرت ساده مردانه">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت ساده مردانه</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bzy5e/تاپ-تریکو-blue-motion" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597131332-9xJA5L5apiUbGQAS.jpg" alt="تاپ تریکو blue motion">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ تریکو blue motion</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/dyyjd/لگ-ساده-BASIC" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126926-c2wkRy2CwVJimq0b.jpg" alt="لگ ساده BASIC">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>لگ ساده BASIC</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">49,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/ex8qd/شومیز-جین-خال-خالی" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126917-77obKk3uMZTwxv1i.jpg" alt="شومیز جین خال خالی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شومیز جین خال خالی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">85,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="4" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bwype/دامن-کوتاه-نخی" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126879-rolNzo4N09rIsEJ2.jpg" alt="دامن کوتاه نخی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>دامن کوتاه نخی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide" data-slick-index="5" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/dv69b/تیشرت-مردانه-TOMTAILOR" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126645-9SwrM4vpOdsHI7jR.jpg" alt="تیشرت مردانه TOMTAILOR">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت مردانه TOMTAILOR</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price text-danger">ناموجود</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide" data-slick-index="6" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/erqyd/شلوارک-زیر-زانو-طرحدار" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597125665-n5qxHLXuWLdIHiUc.jpg" alt="شلوارک زیر زانو طرحدار">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوارک زیر زانو طرحدار</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price text-danger">ناموجود</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide" data-slick-index="7" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bq95d/شورتک-طرحدار-H-M" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597125662-84w53onNWHRZbg31.jpg" alt="شورتک طرحدار H&amp;M">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شورتک طرحدار H&amp;M</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="8" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/b1yxb/تیشرت-ساده-مردانه" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597136762-uvoip4AET3b0sGKc.jpg" alt="تیشرت ساده مردانه">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت ساده مردانه</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="9" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bzy5e/تاپ-تریکو-blue-motion" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597131332-9xJA5L5apiUbGQAS.jpg" alt="تاپ تریکو blue motion">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ تریکو blue motion</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="10" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/dyyjd/لگ-ساده-BASIC" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126926-c2wkRy2CwVJimq0b.jpg" alt="لگ ساده BASIC">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>لگ ساده BASIC</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">49,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="11" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/ex8qd/شومیز-جین-خال-خالی" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126917-77obKk3uMZTwxv1i.jpg" alt="شومیز جین خال خالی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شومیز جین خال خالی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">85,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="12" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bwype/دامن-کوتاه-نخی" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126879-rolNzo4N09rIsEJ2.jpg" alt="دامن کوتاه نخی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>دامن کوتاه نخی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="13" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/dv69b/تیشرت-مردانه-TOMTAILOR" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597126645-9SwrM4vpOdsHI7jR.jpg" alt="تیشرت مردانه TOMTAILOR">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت مردانه TOMTAILOR</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price text-danger">ناموجود</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="14" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/erqyd/شلوارک-زیر-زانو-طرحدار" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597125665-n5qxHLXuWLdIHiUc.jpg" alt="شلوارک زیر زانو طرحدار">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوارک زیر زانو طرحدار</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price text-danger">ناموجود</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="15" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.ir/shop/products/bq95d/شورتک-طرحدار-H-M" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.ir/uploads/image/2020/8/optimized/1597125662-84w53onNWHRZbg31.jpg" alt="شورتک طرحدار H&amp;M">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شورتک طرحدار H&amp;M</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000 تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a></div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        <div class="d-flex align-items-center justify-content-center">
+            <a class="btn btn-black" href="https://ibolak.ir" title="" target="_self"><i class="fal fa-arrow-right"></i><span>رفتن به صفحه اصلی</span></a>
+        </div>
+
+    </main>
+
+    <main>
+
+        <div class="row">
+            <div class="col-lg-8 col-sm-12">
+                <div class="basket-items-wrapper">
+                    <div class="basket-item">
+                        <div class="basket-item__image">
+                            <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596359530-OQ3qpGvPFN8dtDWc.jpg" alt="">
+                        </div>
+                        <div class="basket-item__body">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h3>شلوار جین کاغذی اسلش</h3>
+                                <a class="remove" data-id="brjvd" data-variant-id="1628" onclick="deleteConfirmation()" style="cursor: pointer" target="_self">
+                                    <i class="far fa-trash"></i> </a>
+                            </div>
+                            <div class="basket-item__details">
+                                <span>سایز (حروفی): XS</span> <span>رنگ: آبی روشن</span>
+                            </div>
+                            <div class="d-flex align-items-end justify-content-between">
+                                <div class="product-count basket-item-wrapper__count"><span>تعداد:</span>
+                                    <div class="product-count-wrapper" data-max="10000" data-min="1">
+                                        <input type="hidden" data-id="brjvd" data-variant-id="1628" value="1">
+                                        <a href="#" class="basket-item-wrapper__count__plus" title="" target="_self"><i class="far fa-plus"></i></a>
+                                        <span class="item_count">1</span>
+                                        <a href="#" title="" class="basket-item-wrapper__count__minus" target="_self" style="opacity: 0.3;"><i class="far fa-minus"></i></a>
+                                    </div>
+                                </div>
+
+                                <div class="d-flex align-items-end justify-content-end flex-column">
+                                    <small>قیمت واحد:</small> <strong class="text-success">89,000 تومان</strong>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <aside class="col-lg-4 col-sm-12">
+                <h4 class="title-dot">فاکتور خرید شما</h4>
+                <div id="total-price"><i>+</i>
+                    <p>مجموع سفارش</p>
+                    <strong> 89,000 تومان
+
+                    </strong>
+                </div>
+                <div id="total-price"><i>=</i>
+                    <p>مبلغ پرداختی شما</p>
+                    <strong> 89,000 تومان
+
+                    </strong>
+                </div>
+                <a class="btn btn-primary btn-block" href="https://ibolak.com/shop/basket/info-verify" title="" target="_self"><i class="fal fa-truck"></i><span>ادامه فرایند خرید</span></a>
+
+            </aside>
+        </div>
+        <section class="products-container" id="related-products">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>محصولاتی که اغلب همراه محصولات شما خریداری شده‌اند</h2>
+                </div>
+                <div class="section-arrows">
+                    <a class="arrow-next" href="#" title="" target="_self"><i class="far fa-arrow-right"></i></a><a class="arrow-prev" href="#" title="" target="_self"><i class="far fa-arrow-left"></i></a>
+                </div>
+            </div>
+
+
+            <div class="products-wrapper should-slide slick-initialized slick-slider">
+                <div class="slick-list draggable">
+                    <div class="slick-track" style="opacity: 1; width: 11430px; transform: translate3d(1270px, 0px, 0px);">
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-5" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bg55d/تونیک-بغل-زیپدار-کد-ib00147" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596956039-2EPoqkRL353wPQ3s.jpg " alt="تونیک بغل زیپدار کد ib00147">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تونیک بغل زیپدار کد ib00147</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">125,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-4" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/e841d/مانتو-نخی-عبایی-کد-ib00145" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596894260-k16MeStuUu9U9zqC.jpg " alt="مانتو نخی عبایی کد ib00145">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>مانتو نخی عبایی کد ib00145</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b747b/تیشرت-پاندا-fbsister-کد-ib00144" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596893933-FO7iQbEJ6YO4kkuP.jpg " alt="تیشرت پاندا fbsister کد ib00144">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت پاندا fbsister کد ib00144</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">52,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/e541d/ست-تیشرت-و-شلوار-فلامینگو-کد-ib00142" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596714348-FsMe40jXrOnSgGtA.jpg " alt="ست تیشرت و شلوار فلامینگو کد ib00142">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>ست تیشرت و شلوار فلامینگو کد ib00142</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">98,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b44jb/شلوار-راحتی-طرحدار-کد-ib00141" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596700080-OXEl7XZ7jn9bnjVK.jpg " alt="شلوار راحتی طرحدار کد ib00141">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوار راحتی طرحدار کد ib00141</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b1yxb/تیشرت-ساده-مردانه" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597136762-uvoip4AET3b0sGKc.jpg " alt="تیشرت ساده مردانه">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت ساده مردانه</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="1" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bzy5e/تاپ-تریکو-blue-motion" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597131332-9xJA5L5apiUbGQAS.jpg " alt="تاپ تریکو blue motion">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ تریکو blue motion</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="2" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dyyjd/لگ-ساده-BASIC" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597126926-c2wkRy2CwVJimq0b.jpg " alt="لگ ساده BASIC">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>لگ ساده BASIC</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">49,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="3" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/ex8qd/شومیز-جین-خال-خالی" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597126917-77obKk3uMZTwxv1i.jpg " alt="شومیز جین خال خالی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شومیز جین خال خالی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">85,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-active" data-slick-index="4" aria-hidden="false" style="width: 254px;" tabindex="0">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bwype/دامن-کوتاه-نخی" title="" target="_self" tabindex="0">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597126879-rolNzo4N09rIsEJ2.jpg " alt="دامن کوتاه نخی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>دامن کوتاه نخی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="5" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bq95d/شورتک-طرحدار-H-M" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597125662-84w53onNWHRZbg31.jpg " alt="شورتک طرحدار H&amp;M">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شورتک طرحدار H&amp;M</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="6" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/em6pd/تیشرت-minion" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597123031-GWwQRmcp735VBdFT.jpg " alt="تیشرت minion">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت minion</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">42,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="7" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bl6kb/تیشرت-LOVE-کد-ib00158" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597045365-RQO9SAplF6qsfsT1.jpg " alt="تیشرت LOVE کد ib00158">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت LOVE کد ib00158</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="8" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dk6ze/تاپ-گیپوری-کد-ib00157" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597043854-qotO0qHys187IKfk.jpg " alt="تاپ گیپوری کد ib00157">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ گیپوری کد ib00157</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="9" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dg51e/تیشرت-kenzo-کد-ib00155" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597041985-yt1dS2l6VdQJsyCQ.jpg " alt="تیشرت kenzo کد ib00155">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت kenzo کد ib00155</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">48,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="10" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bp67e/تاپ-ساده-collection-کد-ib00153" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597041279-8phQdymzwKzWBPU6.jpg " alt="تاپ ساده collection کد ib00153">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ ساده collection کد ib00153</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="11" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bn6pd/بلوز-گیپوری-کد-ib00152" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597040584-YZTidotLvt5iYLxg.jpg " alt="بلوز گیپوری کد ib00152">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>بلوز گیپوری کد ib00152</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">55,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="12" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dm6zb/شلوار-راه-راه-کنفی-کد-ib00151" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597040195-uv5yhzi0XJoyilla.jpg " alt="شلوار راه راه کنفی کد ib00151">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوار راه راه کنفی کد ib00151</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">85,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="13" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/el69e/شلوار-مام-فیت2-کد-ib00150" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596966723-zJCEp8HsZQUmYjoT.jpg " alt="شلوار مام فیت2 کد ib00150">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوار مام فیت2 کد ib00150</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">109,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="14" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bk6rd/تاپ-بندی-primark-کد-ib00149" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596964459-gsh5bjLObFbQDN3U.jpg " alt="تاپ بندی primark کد ib00149">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ بندی primark کد ib00149</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">32,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="15" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bg55d/تونیک-بغل-زیپدار-کد-ib00147" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596956039-2EPoqkRL353wPQ3s.jpg " alt="تونیک بغل زیپدار کد ib00147">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تونیک بغل زیپدار کد ib00147</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">125,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="16" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/e841d/مانتو-نخی-عبایی-کد-ib00145" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596894260-k16MeStuUu9U9zqC.jpg " alt="مانتو نخی عبایی کد ib00145">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>مانتو نخی عبایی کد ib00145</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="17" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b747b/تیشرت-پاندا-fbsister-کد-ib00144" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596893933-FO7iQbEJ6YO4kkuP.jpg " alt="تیشرت پاندا fbsister کد ib00144">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت پاندا fbsister کد ib00144</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">52,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="18" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/e541d/ست-تیشرت-و-شلوار-فلامینگو-کد-ib00142" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596714348-FsMe40jXrOnSgGtA.jpg " alt="ست تیشرت و شلوار فلامینگو کد ib00142">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>ست تیشرت و شلوار فلامینگو کد ib00142</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">98,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide" data-slick-index="19" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b44jb/شلوار-راحتی-طرحدار-کد-ib00141" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596700080-OXEl7XZ7jn9bnjVK.jpg " alt="شلوار راحتی طرحدار کد ib00141">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوار راحتی طرحدار کد ib00141</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="20" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b1yxb/تیشرت-ساده-مردانه" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597136762-uvoip4AET3b0sGKc.jpg " alt="تیشرت ساده مردانه">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت ساده مردانه</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="21" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bzy5e/تاپ-تریکو-blue-motion" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597131332-9xJA5L5apiUbGQAS.jpg " alt="تاپ تریکو blue motion">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ تریکو blue motion</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="22" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dyyjd/لگ-ساده-BASIC" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597126926-c2wkRy2CwVJimq0b.jpg " alt="لگ ساده BASIC">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>لگ ساده BASIC</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">49,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="23" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/ex8qd/شومیز-جین-خال-خالی" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597126917-77obKk3uMZTwxv1i.jpg " alt="شومیز جین خال خالی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شومیز جین خال خالی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">85,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="24" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bwype/دامن-کوتاه-نخی" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597126879-rolNzo4N09rIsEJ2.jpg " alt="دامن کوتاه نخی">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>دامن کوتاه نخی</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="25" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bq95d/شورتک-طرحدار-H-M" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597125662-84w53onNWHRZbg31.jpg " alt="شورتک طرحدار H&amp;M">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شورتک طرحدار H&amp;M</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="26" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/em6pd/تیشرت-minion" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597123031-GWwQRmcp735VBdFT.jpg " alt="تیشرت minion">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت minion</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">42,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="27" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bl6kb/تیشرت-LOVE-کد-ib00158" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597045365-RQO9SAplF6qsfsT1.jpg " alt="تیشرت LOVE کد ib00158">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت LOVE کد ib00158</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="28" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dk6ze/تاپ-گیپوری-کد-ib00157" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597043854-qotO0qHys187IKfk.jpg " alt="تاپ گیپوری کد ib00157">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ گیپوری کد ib00157</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="29" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dg51e/تیشرت-kenzo-کد-ib00155" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597041985-yt1dS2l6VdQJsyCQ.jpg " alt="تیشرت kenzo کد ib00155">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت kenzo کد ib00155</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">48,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="30" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bp67e/تاپ-ساده-collection-کد-ib00153" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597041279-8phQdymzwKzWBPU6.jpg " alt="تاپ ساده collection کد ib00153">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ ساده collection کد ib00153</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">39,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="31" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bn6pd/بلوز-گیپوری-کد-ib00152" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597040584-YZTidotLvt5iYLxg.jpg " alt="بلوز گیپوری کد ib00152">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>بلوز گیپوری کد ib00152</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">55,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="32" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/dm6zb/شلوار-راه-راه-کنفی-کد-ib00151" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1597040195-uv5yhzi0XJoyilla.jpg " alt="شلوار راه راه کنفی کد ib00151">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوار راه راه کنفی کد ib00151</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">85,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="33" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/el69e/شلوار-مام-فیت2-کد-ib00150" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596966723-zJCEp8HsZQUmYjoT.jpg " alt="شلوار مام فیت2 کد ib00150">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوار مام فیت2 کد ib00150</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">109,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="34" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bk6rd/تاپ-بندی-primark-کد-ib00149" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596964459-gsh5bjLObFbQDN3U.jpg " alt="تاپ بندی primark کد ib00149">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تاپ بندی primark کد ib00149</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">32,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="35" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/bg55d/تونیک-بغل-زیپدار-کد-ib00147" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596956039-2EPoqkRL353wPQ3s.jpg " alt="تونیک بغل زیپدار کد ib00147">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تونیک بغل زیپدار کد ib00147</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">125,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="36" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/e841d/مانتو-نخی-عبایی-کد-ib00145" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596894260-k16MeStuUu9U9zqC.jpg " alt="مانتو نخی عبایی کد ib00145">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>مانتو نخی عبایی کد ib00145</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="37" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b747b/تیشرت-پاندا-fbsister-کد-ib00144" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596893933-FO7iQbEJ6YO4kkuP.jpg " alt="تیشرت پاندا fbsister کد ib00144">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>تیشرت پاندا fbsister کد ib00144</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">52,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="38" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/e541d/ست-تیشرت-و-شلوار-فلامینگو-کد-ib00142" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596714348-FsMe40jXrOnSgGtA.jpg " alt="ست تیشرت و شلوار فلامینگو کد ib00142">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>ست تیشرت و شلوار فلامینگو کد ib00142</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">98,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="product-outer slick-slide slick-cloned" data-slick-index="39" aria-hidden="true" style="width: 254px;" tabindex="-1">
+                            <a class="product-wrapper" href="https://ibolak.com/shop/products/b44jb/شلوار-راحتی-طرحدار-کد-ib00141" title="" target="_self" tabindex="-1">
+                                <div class="product-wrapper__image">
+                                    <img src="https://ibolak.com/uploads/image/2020/8/optimized/1596700080-OXEl7XZ7jn9bnjVK.jpg " alt="شلوار راحتی طرحدار کد ib00141">
+                                </div>
+                                <div class="product-wrapper__body">
+                                    <h5>شلوار راحتی طرحدار کد ib00141</h5>
+                                    <div class="d-flex align-items-end justify-content-between">
+                                        <strong></strong>
+                                        <div class="d-flex align-items-end justify-content-center flex-column">
+                                            <strong class="product-wrapper__price">59,000تومان</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+
+    </main>
+@endsection
+
+
+
+
+@section('scriptCart')
+    <script>
+
+        // Check values to see if they're at minimum already on page load
+        $('.product-count-wrapper input').each(function () {
+            console.log($(this).val());
+            $(this).siblings('span').html($(this).val());
+
+            if (parseInt($(this).val()) <= parseInt($(this).parent().data('min'))) {
+                $(this).siblings('.basket-item-wrapper__count__minus').css('opacity', '.3');
+            }
+
+            if (parseInt($(this).val()) >= parseInt($(this).parent().data('max'))) {
+                $(this).siblings('.basket-item-wrapper__count__plus').css('opacity', '.3');
+            }
+
+        });
+
+        $('.basket-item-wrapper__count__plus').click(function (e) {
+            e.preventDefault();
+            var input = $(this).siblings('input');
+
+
+            if (parseInt(input.val()) + 1 >= parseInt($(this).parent().data('max'))) {
+                $(this).css('opacity', '.3');
+            }
+            if (parseInt($(this).siblings('input').val()) < parseInt($(this).parent().data('max'))) {
+                $(this).siblings('input').val(parseInt(input.val()) + 1);
+                updateBasket(input);
+                $(this).siblings('span').html(input.val());
+
+
+            }
+
+            if (parseInt($(this).siblings('input').val()) > parseInt($(this).parent().data('min'))) {
+                $(this).siblings('.basket-item-wrapper__count__minus').css('opacity', '1');
+            }
+        });
+
+        $('.basket-item-wrapper__count__minus').click(function (e) {
+            e.preventDefault();
+            var input = $(this).siblings('input');
+            value = input.val();
+            if (parseInt(input.val()) - 1 <= parseInt($(this).parent().data('min'))) {
+                $(this).css('opacity', '.3');
+            }
+
+            if (parseInt($(this).siblings('input').val()) > parseInt($(this).parent().data('min'))) {
+                $(this).siblings('input').val(parseInt(input.val()) - 1);
+                updateBasket(input);
+                $(this).siblings('span').html(input.val());
+
+            }
+
+            if (parseInt($(this).siblings('input').val()) < parseInt($(this).parent().data('max'))) {
+                $(this).siblings('.basket-item-wrapper__count__plus').css('opacity', '1');
+            }
+        });
+
+        $(document).on('change', '.product_count', function () {
+            var input = $(this);
+            updateBasket(input);
+        });
+
+        function updateBasket(item) {
+            var productId = item.attr('data-id');
+            var productCount = item.val();
+            var variantId = item.attr('data-variant-id');
+
+            $.ajax({
+                url: "/shop/basket/" + productId + "/update?count=" + productCount + "&sku_id=" + variantId,
+                success: function (response) {
+                    location.reload();
                 },
-                "subtotals": {
-                    "products": {
-                        "type": "products",
-                        "label": "Subtotal",
-                        "amount": 0,
-                        "value": "$0.00"
-                    },
-                    "discounts": null,
-                    "shipping": {
-                        "type": "shipping",
-                        "label": "Shipping",
-                        "amount": 0,
-                        "value": "Free"
-                    },
-                    "tax": {
-                        "type": "tax",
-                        "label": "Taxes",
-                        "amount": 0,
-                        "value": "$0.00"
-                    }
-                },
-                "products_count": 0,
-                "summary_string": "0 items",
-                "vouchers": {
-                    "allowed": 0,
-                    "added": []
-                },
-                "discounts": [],
-                "minimalPurchase": 0,
-                "minimalPurchaseRequired": ""
-            },
-            "currency": {
-                "name": "US Dollar",
-                "iso_code": "USD",
-                "iso_code_num": "840",
-                "sign": "$"
-            },
-            "customer": {
-                "lastname": null,
-                "firstname": null,
-                "email": null,
-                "birthday": null,
-                "newsletter": null,
-                "newsletter_date_add": null,
-                "optin": null,
-                "website": null,
-                "company": null,
-                "siret": null,
-                "ape": null,
-                "is_logged": false,
-                "gender": {
-                    "type": null,
-                    "name": null
-                },
-                "addresses": []
-            },
-            "language": {
-                "name": "English (English)",
-                "iso_code": "en",
-                "locale": "en-US",
-                "language_code": "en-us",
-                "is_rtl": "0",
-                "date_format_lite": "m\/d\/Y",
-                "date_format_full": "m\/d\/Y H:i:s",
-                "id": 1
-            },
-            "page": {
-                "title": "",
-                "canonical": null,
-                "meta": {
-                    "title": "Cart",
-                    "description": "",
-                    "keywords": "",
-                    "robots": "index"
-                },
-                "page_name": "cart",
-                "body_classes": {
-                    "lang-en": true,
-                    "lang-rtl": false,
-                    "country-US": true,
-                    "currency-USD": true,
-                    "layout-left-column": true,
-                    "page-cart": true,
-                    "tax-display-disabled": true,
-                    "cart-empty": true
-                },
-                "admin_notifications": []
-            },
-            "shop": {
-                "name": "Demo Store",
-                "logo": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/demo-store-logo-1555915547.jpg",
-                "stores_icon": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/logo_stores.png",
-                "favicon": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/favicon.ico"
-            },
-            "urls": {
-                "base_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/",
-                "current_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/cart",
-                "shop_domain_url": "https:\/\/innovatorythemes.com",
-                "img_ps_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/",
-                "img_cat_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/c\/",
-                "img_lang_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/l\/",
-                "img_prod_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/",
-                "img_manu_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/m\/",
-                "img_sup_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/su\/",
-                "img_ship_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/s\/",
-                "img_store_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/st\/",
-                "img_col_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/co\/",
-                "img_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/img\/",
-                "css_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/css\/",
-                "js_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/js\/",
-                "pic_url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/upload\/",
-                "pages": {
-                    "address": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/address",
-                    "addresses": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/addresses",
-                    "authentication": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/login",
-                    "cart": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/cart",
-                    "category": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=category",
-                    "cms": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=cms",
-                    "contact": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/contact-us",
-                    "discount": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/discount",
-                    "guest_tracking": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/guest-tracking",
-                    "history": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order-history",
-                    "identity": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/identity",
-                    "index": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/",
-                    "my_account": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/my-account",
-                    "order_confirmation": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order-confirmation",
-                    "order_detail": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=order-detail",
-                    "order_follow": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order-follow",
-                    "order": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order",
-                    "order_return": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=order-return",
-                    "order_slip": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/credit-slip",
-                    "pagenotfound": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/page-not-found",
-                    "password": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/password-recovery",
-                    "pdf_invoice": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=pdf-invoice",
-                    "pdf_order_return": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=pdf-order-return",
-                    "pdf_order_slip": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=pdf-order-slip",
-                    "prices_drop": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/prices-drop",
-                    "product": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/index.php?controller=product",
-                    "search": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/search",
-                    "sitemap": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/sitemap",
-                    "stores": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/stores",
-                    "supplier": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/supplier",
-                    "register": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/login?create_account=1",
-                    "order_login": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/order?login=1"
-                },
-                "alternative_langs": {
-                    "en-us": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/cart",
-                    "de-de": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/de\/warenkorb",
-                    "fr-fr": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/fr\/panier",
-                    "es-es": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/es\/carrito",
-                    "it-it": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/it\/carrello"
-                },
-                "theme_assets": "\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/themes\/IT1001\/assets\/",
-                "actions": {
-                    "logout": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/?mylogout="
-                },
-                "no_picture_image": {
-                    "bySize": {
-                        "small_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-small_default.jpg",
-                            "width": 98,
-                            "height": 111
-                        },
-                        "cart_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-cart_default.jpg",
-                            "width": 125,
-                            "height": 141
-                        },
-                        "medium_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-medium_default.jpg",
-                            "width": 350,
-                            "height": 396
-                        },
-                        "home_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-home_default.jpg",
-                            "width": 350,
-                            "height": 396
-                        },
-                        "large_default": {
-                            "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-large_default.jpg",
-                            "width": 800,
-                            "height": 905
-                        }
-                    },
-                    "small": {
-                        "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-small_default.jpg",
-                        "width": 98,
-                        "height": 111
-                    },
-                    "medium": {
-                        "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-medium_default.jpg",
-                        "width": 350,
-                        "height": 396
-                    },
-                    "large": {
-                        "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/img\/p\/en-default-large_default.jpg",
-                        "width": 800,
-                        "height": 905
-                    },
-                    "legend": ""
+                error: function () {
+                    location.reload();
                 }
-            },
-            "configuration": {
-                "display_taxes_label": false,
-                "is_catalog": false,
-                "show_prices": true,
-                "opt_in": {
-                    "partner": true
-                },
-                "quantity_discount": {
-                    "type": "discount",
-                    "label": "Discount"
-                },
-                "voucher_enabled": 0,
-                "return_enabled": 0
-            },
-            "field_required": [],
-            "breadcrumb": {
-                "links": [{
-                    "title": "Home",
-                    "url": "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/"
-                }],
-                "count": 1
-            },
-            "link": {
-                "protocol_link": "https:\/\/",
-                "protocol_content": "https:\/\/"
-            },
-            "time": 1570653256,
-            "static_token": "b37219994338861bc35224966f2f6efd",
-            "token": "3d579dc08fa30b63da91ad8e3f21049d"
-        };
+            })
+        }
 
-        var search_url = "https:\/\/innovatorythemes.com\/prestashop\/INNO02\/INNO1001_Cucina\/IT01\/en\/search";
+        function deleteBaketItem() {
+            $(document).on('click', '.remove', function () {
+                var input = $(this);
+                var productId = input.attr('data-id');
+                var variantId = input.attr('data-variant-id');
+                $.ajax({
+                    url: "/shop/basket/" + productId + "/update?count=0&sku_id=" + variantId,
+                    success: function (response) {
+                        location.reload();
+                    },
+                    error: function () {
+                        location.reload();
+                    }
+                })
+            });
+        }
+
+        function deleteConfirmation() {
+            var r = confirm('آیا از حذف محصول مطمئن هستید؟');
+            if (r == true) {
+                deleteBaketItem();
+            }
+        }
     </script>
 @endsection
 
-@section('fooScript')
-    @if(App::getLocale() == 'fa')
-        <script type="text/javascript" src="{{asset('FrontEnd/js/RTL/bottom-ff95c795.js')}}"></script>
-    @elseif(App::getLocale() == 'en')
-        <script type="text/javascript" src="{{asset('FrontEnd/js/LTR/bottom-ff95c795.js')}}"></script>
-    @endif
-@endsection
 
-@section('content')
-    <section id="wrapper">
-
-        <aside id="notifications">
-            <div class="container">
-
-            </div>
-        </aside>
-
-        <div class="container">
-            <div class="row">
-
-                <div id="content-wrapper" class="left-column col-xs-12 col-md-12">
-                    <div class="innovatoryBreadcrumb">
-
-                        <nav data-depth="1" class="breadcrumb">
-                            <ol itemscope itemtype="">
-
-                                <li itemprop="itemListElement" itemscope itemtype="">
-                                    <a itemprop="item" href=""> <span itemprop="name">Home</span> </a>
-                                    <meta itemprop="position" content="1">
-                                </li>
-
-                            </ol>
-                        </nav>
-                    </div>
-
-                    <section id="main">
-
-                        <div class="cart-grid row">
-
-                            <!-- Left Block: cart product informations & shpping -->
-                            <div class="cart-grid-body col-xs-12 col-xl-8">
-
-                                <!-- cart products detailed -->
-                                <form method="post" action="{{action('FrontEnd\OrderController@addAfter')}}">
-                                    {{ csrf_field() }}
-                                    <div class="card cart-container">
-                                        <div class="card-block">
-                                            <h1 class="h1">{{__('settings.ShoppingCart')}}</h1>
-                                        </div>
-                                        <hr>
-                                        <div class="modal-body modal-body-cart">
-                                            {{csrf_field()}}
-                                            <table class="show-cart table">
-
-                                            </table>
-                                        </div>
-
-                                        {{--                                    <div class="cart-overview js-cart" data-refresh-url="//innovatorythemes.com/prestashop/INNO02/INNO1001_Cucina/IT01/en/cart?ajax=1&action=refresh">--}}
-                                        {{--                                        <span class="no-items">There are no more items in your cart</span>--}}
-                                        {{--                                    </div>--}}
-                                    </div>
-                                    @if(App::getLocale() == 'fa')
-                                        <div>{{__('settings.finalPrice')}} <span class="total-cart persian-digit"></span>  {{__('settings.tuman')}} </div>
-                                    @elseif(App::getLocale() == 'en')
-                                        <div>{{__('settings.finalPrice')}} <span class="total-cart"></span>  {{__('settings.tuman')}} </div>
-                                    @endif
-
-                                    {{--                                <a class="label" id="orderBtn" href="index.html">--}}
-                                    {{--                                    <i class="material-icons"></i>{{__('settings.ShoppingContinues')}}--}}
-                                    {{--                                </a>--}}
-                                    <div class="modal-footer modal-footer-cart">
-                                        {{--                                    <button type="button" class="btn close-cart" data-dismiss="modal"><i class="fa fa-times" aria-hidden="true"></i> بستن </button>--}}
-                                        <button type="button" class="clear-cart btn">
-                                            <i class="fa fa-refresh" aria-hidden="true"></i> {{__('settings.cleared')}}
-                                        </button>
-                                        <button type="submit" class="btn record-order " id="orderBtn">{{__('settings.ShoppingContinues')}}</button>
-                                    </div>
-
-                                </form>
-                                <!-- shipping informations -->
-
-                            </div>
-
-                            <!-- Right Block: cart subtotal & cart total -->
-                            <div class="cart-grid-right col-xs-12 col-xl-4">
-
-                                <div class="card cart-summary">
-                                    <div class="cart-detailed-totals">
-
-                                        {{--                                        <div class="card-block">--}}
-                                        {{--                                            <div class="cart-summary-line" id="cart-subtotal-products">--}}
-                                        {{--                                                    <span class="label js-subtotal"> {{__('settings.ShoppingItem')}}</span>--}}
-                                        {{--                                                <span class="value cart-products-count"></span>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                            <div class="cart-summary-line" id="cart-subtotal-shipping">--}}
-                                        {{--                                                    <span class="label">Shipping</span>--}}
-                                        {{--                                                <span class="value">Free</span>--}}
-                                        {{--                                                <div><small class="value"></small></div>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </div>--}}
-
-                                        <hr>
-
-                                        <div class="card-block">
-                                            <div class="cart-summary-line cart-total">
-                                                <span class="label">{{__('settings.ShoppingPrice')}}</span>
-{{--                                                @php--}}
-
-{{--                                                            echo number_format('23456432', 0);--}}
-
-{{--                                                @endphp--}}
-                                                @if(App::getLocale() == 'fa')
-                                                    <span class="value"><span class="total-cart persian-digit"></span> {{__('settings.tuman')}}</span>
-                                                @elseif(App::getLocale() == 'en')
-                                                    <span class="value"><span class="total-cart "></span> {{__('settings.tuman')}}</span>
-                                                @endif
-
-                                            </div>
-
-                                            {{--                                            <div class="cart-summary-line">--}}
-                                            {{--                                                <small class="label">Taxes</small>--}}
-                                            {{--                                                <small class="value">$0.00</small>--}}
-                                            {{--                                            </div>--}}
-                                        </div>
-
-                                        <hr>
-                                    </div>
-{{--                                    <div class="checkout text-xs-center card-block">--}}
-{{--                                        <button type="button" class="btn btn-primary disabled"  type="submit" class="btn record-order " id="orderBtn">{{__('settings.ShoppingContinues')}}</button>--}}
-{{--                                    </div>--}}
-                                </div>
-
-                                <div id="block-reassurance">
-                                    <ul>
-                                        <li>
-                                            <div class="block-reassurance-item">
-                                                <img src="{{asset('img/admin/setting/1.png')}}">
-                                                <span class="h6">{{__('settings.deliveryCart')}}</span>
-                                            </div>
-                                        </li>
-
-                                        {{--                                        <li>--}}
-                                        {{--                                            <div class="block-reassurance-item">--}}
-                                        {{--                                                <img src="{{asset('img/admin/setting/2.svg')}}">--}}
-                                        {{--                                                <span class="h6">{{__('settings.soppurtCart')}}</span>--}}
-                                        {{--                                            </div>--}}
-                                        {{--                                        </li>--}}
-
-                                        <li>
-                                            <div class="block-reassurance-item">
-                                                <img src="{{asset('img/admin/setting/2.png')}}">
-                                                <span class="h6">{{__('settings.soppurtCart')}}</span>
-                                            </div>
-                                        </li>
-
-                                        <li>
-                                            <div class="block-reassurance-item">
-                                                <img src="{{asset('img/admin/setting/3.png')}}">
-                                                <span class="h6">{{__('settings.guarantiCart')}}</span>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                                </div>
-
-                            </div>
-                            <div class="clearfix"></div>
-
-                        </div>
-                    </section>
-
-                    <script type="text/javascript">
-                        $(document).ready(function () {
-                            var owl = $(".innovatoryFeatured");
-                            owl.owlCarousel({
-                                loop: true,
-                                nav: true,
-                                dots: false,
-                                navText: ['<i class="fa fa-angle-left"></i>', '<i class="fa fa-angle-right"></i>'],
-                                responsive: {
-                                    0: {
-                                        items: 2
-                                    },
-                                    480: {
-                                        items: 2
-                                    },
-                                    768: {
-                                        items: 3
-                                    },
-                                    992: {
-                                        items: 3
-                                    },
-                                    1200: {
-                                        items: 4
-                                    }
-                                }
-                            });
-                        });
-                    </script>
-
-                </div>
-
-            </div>
-        </div>
-    </section>
-@endsection
