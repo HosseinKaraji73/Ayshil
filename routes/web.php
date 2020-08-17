@@ -31,6 +31,8 @@ Route::get('products/menu/{id}/{name}', 'FrontEnd\ProductController@MenuShow');
 Route::get('products/menu/{menuProducts_id}/{id}/{name}', 'FrontEnd\ProductController@subMenuShow');
 Route::get('products/menu/{subMenuProducts_id}/{id}/{name}', 'FrontEnd\ProductController@subSubMenuShow');
 Route::get('products/menu/{subMenuProducts_id}/{subSubMenuProducts_id}/{id}/{title}', 'FrontEnd\ProductController@show');
+Route::post('request/color','FrontEnd\ProductController@showColor');
+Route::post('request/many','FrontEnd\ProductController@showMany');
 
 
 Route::get('activate-carbon', 'FrontEnd\ActiveCarbonController@index');
@@ -52,6 +54,9 @@ Route::get('reset-password', 'Auth\ResetPasswordController@showResetForm');
 Route::post('reset-password', 'Auth\ResetPasswordController@resetPassword')->name('resetPassword');
 Route::post('cart/submit', 'FrontEnd\OrderController@addAfter');
 Route::post('insert/orders', 'FrontEnd\OrderController@addBefore');
+
+
+
 
 
 

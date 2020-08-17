@@ -5,7 +5,7 @@
             <button type="submit"><i class="fal fa-search"></i></button>
         </form>
     </div>
-    <a id="basket-link" href="{{url('/cart')}}" title="" target="_self">
+    <a id="basket-link" href="{{url('/cart')}}" title="" target="_blank">
 
         <i class="fal fa-shopping-cart"> </i> <em id="basket-badge"> 0 </em> </a>
 
@@ -25,11 +25,11 @@
 
 
             @if(Auth::user()->roleId == 0)
-                <a href="{{url('/panel/admin/profile')}}" class="register">{{__('auth.viewPrpfile')}}</a>
+                <a href="{{url('/panel/admin/profile')}}" class="register" target="_blank">{{__('auth.viewPrpfile')}}</a>
             @elseif(Auth::user()->roleId == 1)
-                <a href="{{url('/panel/owner/profile')}}" class="register">{{__('auth.viewPrpfile')}}</a>
+                <a href="{{url('/panel/owner/profile')}}" class="register" target="_blank">{{__('auth.viewPrpfile')}}</a>
             @else
-                <a href="{{url('/panel/user/profile')}}" class="register">{{__('auth.viewPrpfile')}}</a>
+                <a href="{{url('/panel/user/profile')}}" class="register" target="_blank">{{__('auth.viewPrpfile')}}</a>
             @endif
 
             <a href="{{ route('logout') }}" class="register"
@@ -42,7 +42,7 @@
 
             <form id="logout-form" action="{{ route('logout') }}" method="POST"
                   style="display: none;">
-                {{ csrf_field() }}
+                @csrf
             </form>
 
 

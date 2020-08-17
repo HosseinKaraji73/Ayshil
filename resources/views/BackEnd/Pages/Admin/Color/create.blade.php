@@ -40,6 +40,16 @@
                 @endif
             </div>
 
+            <div class="form-group{{ $errors->has('c_id') ? ' has-error' : '' }}">
+                {!! Form::label('c_id', ' کد هگزا رنگ :') !!}
+                {!! Form::text('c_id', null,['id'=>'c_id' ,'class'=>'form-control']) !!}
+                @if ($errors->has('c_id'))
+                    <span class="help-block">
+                        <strong>{{ $errors->first('c_id') }}</strong>
+                    </span>
+                @endif
+            </div>
+
             <!-- <div class="form-group{{ $errors->has('name_en') ? ' has-error' : '' }}">
                 {!! Form::label('name_en', ' عنوان منو انگلیسی:') !!}
                 {!! Form::text('name_en', null,['id'=>'name_en' ,'class'=>'form-control']) !!}

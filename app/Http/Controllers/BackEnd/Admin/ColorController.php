@@ -41,9 +41,11 @@ class ColorController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'=>'required|max: 255|string|unique:menu_products',
+            'c_id'=>'required',
             // 'name_en'=>'required|max: 255|string|unique:menu_products',
         ], [
             'name.required'=>'پر کردن فیلد نام اجباری است',
+            'c_id.required'=>'پر کردن فیلد کد رنگ اجباری است',
             // 'name_en.required'=>'پر کردن فیلد نام اجباری است',
             'name.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
             // 'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
@@ -58,6 +60,7 @@ class ColorController extends Controller
 
         $color = [
             'name' => $request->name,
+            'c_id' => $request->c_id,
             // 'name_en' => $request->name_en,
         ];
         if (Color::create($color)) {
@@ -100,9 +103,11 @@ class ColorController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name'=>'required|max: 255|string|unique:menu_products',
+            'c_id'=>'required',
             // 'name_en'=>'required|max: 255|string|unique:menu_products',
         ], [
             'name.required'=>'پر کردن فیلد نام اجباری است',
+            'c_id.required'=>'پر کردن فیلد کد رنگ اجباری است',
             // 'name_en.required'=>'پر کردن فیلد نام اجباری است',
             'name.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
             // 'name_en.unique'=>'قبلا منویی با این عنوان ثبت شده است.',
@@ -114,6 +119,7 @@ class ColorController extends Controller
                 ->withInput();
         }
         $color->name = $request->name;
+        $color->c_id = $request->c_id;
         // $color->name_en = $request->name_en;
         if ($color->save()) {
             return redirect()->back()->with('alert-success', 'رنگ با موفقیت ثبت شد.');
